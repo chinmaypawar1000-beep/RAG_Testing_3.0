@@ -437,7 +437,3 @@ This section is for AI coding agents that need to understand, modify, or extend 
 MIT — Free to use, modify, and distribute.
 
 ---
-
-## 🙏 Credits
-
-Built by [chinmaypawar1000-beep](https://github.com/chinmaypawar1000-beep) .

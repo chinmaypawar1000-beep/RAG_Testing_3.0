@@ -440,4 +440,4 @@ MIT — Free to use, modify, and distribute.
 
 ## 🙏 Credits
 
-Built by [chinmaypawar1000-beep](https://github.com/chinmaypawar1000-beep) with assistance from Antigravity AI coding agent.
+Built by [chinmaypawar1000-beep](https://github.com/chinmaypawar1000-beep) .

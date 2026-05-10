@@ -27,10 +27,19 @@ import pymupdf
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
+# Load .env file if present
+_env_path = Path(__file__).parent / ".env"
+if _env_path.exists():
+    for line in _env_path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
 # ─── Config ────────────────────────────────────────────────────────
 OLLAMA_URL = "http://127.0.0.1:11434"
 QDRANT_URL = "http://127.0.0.1:6333"
-GEMINI_API_KEY = "AIzaSyB7pSvAfSOqir2crN7d6lYdDxMGEhBO9H0"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_MODEL = "gemini-2.0-flash"
 
 EMBED_MODEL = "nomic-embed-text"

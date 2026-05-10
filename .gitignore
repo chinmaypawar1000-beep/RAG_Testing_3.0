@@ -1,3 +1,6 @@
+# Secrets
+.env
+
 # Data directories
 qdrant/
 uploads/*.pdf

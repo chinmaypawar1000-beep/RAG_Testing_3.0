@@ -5,9 +5,20 @@ Uses Qdrant for retrieval and Ollama for LLM answers.
 Usage: python scripts/rag_chat.py "Your question here"
 """
 
+import os
 import sys
 import json
 import requests
+from pathlib import Path
+
+# Load .env
+_env = Path(__file__).parent.parent / ".env"
+if _env.exists():
+    for line in _env.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
 
 OLLAMA_URL = "http://localhost:11434"
 QDRANT_URL = "http://localhost:6333"
@@ -69,7 +80,9 @@ Question: {question}
 
 Answer based ONLY on the above context. If the answer is not in the context, say exactly: I could not find this information in the uploaded document."""
 
-    GEMINI_API_KEY = "AIzaSyB7pSvAfSOqir2crN7d6lYdDxMGEhBO9H0"
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+    if not GEMINI_API_KEY:
+        raise ValueError("GEMINI_API_KEY not set")
     gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
     
     payload = {
